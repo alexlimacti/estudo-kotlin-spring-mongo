@@ -3,7 +3,9 @@ package com.indeas.cursokotlinspring.service.impl
 import com.indeas.cursokotlinspring.documents.Funcionario
 import com.indeas.cursokotlinspring.repository.FuncionarioRepository
 import com.indeas.cursokotlinspring.service.FuncionarioService
+import org.springframework.stereotype.Service
 
+@Service
 class FuncionarioServiceImpl(val funcionarioRepository: FuncionarioRepository) : FuncionarioService {
 
     override fun persistir(funcionario: Funcionario): Funcionario = funcionarioRepository.save(funcionario)

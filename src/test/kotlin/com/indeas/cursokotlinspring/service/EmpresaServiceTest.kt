@@ -4,7 +4,8 @@ import com.indeas.cursokotlinspring.documents.Empresa
 import com.indeas.cursokotlinspring.repository.EmpresaRepository
 import org.junit.Assert
 import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import org.mockito.BDDMockito
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,7 +25,7 @@ class EmpresaServiceTest {
 
     private val CNPJ = "51463645000100"
 
-    @Before
+    @BeforeEach
     @Throws(Exception::class)
     fun setUp() {
         BDDMockito.given(empresaRepository?.findByCnpj(CNPJ)).willReturn(empresa())

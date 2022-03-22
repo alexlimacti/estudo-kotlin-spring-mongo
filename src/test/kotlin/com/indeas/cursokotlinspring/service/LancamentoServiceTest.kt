@@ -4,8 +4,8 @@ import com.indeas.cursokotlinspring.documents.Lancamento
 import com.indeas.cursokotlinspring.enums.Tipo
 import com.indeas.cursokotlinspring.repository.LancamentoRepository
 import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.BeforeEach
 import org.junit.runner.RunWith
 import org.mockito.BDDMockito
 import org.mockito.Mockito
@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import org.springframework.test.context.junit4.SpringRunner
 import java.util.*
-import kotlin.collections.ArrayList
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
@@ -31,28 +30,28 @@ class LancamentoServiceTest {
 
     private val id: String = "1"
 
-    @Before
+    @BeforeEach
     @Throws(Exception::class)
     fun setUp() {
-//        BDDMockito
-//            .given<Page<Lancamento>>(lancamentoRepository?.findByFuncionarioId(id, PageRequest(0, 10)))
-//            .willReturn(PageImpl(ArrayList<Lancamento>()))
-        BDDMockito.given(lancamentoRepository?.findById("1")?.orElse(null)).willReturn(lancamento())
+        BDDMockito
+            .given<Page<Lancamento>>(lancamentoRepository?.findByFuncionarioId(id, PageRequest.of(0, 10)))
+            .willReturn(PageImpl(ArrayList<Lancamento>()))
+        //BDDMockito.given(lancamentoRepository?.findById("1")?.orElse(null)).willReturn(lancamento())
         BDDMockito.given(lancamentoRepository?.save(Mockito.any(Lancamento::class.java)))
             .willReturn(lancamento())
     }
 
-//    @Test
-//    fun testBuscarLancamentoPorFuncionarioId() {
-//        val lancamento: Page<Lancamento>? = lancamentoService?.buscarPorFuncionarioId(id, PageRequest(0, 10))
-//        Assert.assertNotNull(lancamento)
-//    }
-
     @Test
-    fun testBuscarLancamentoPorId() {
-        val lancamento: Lancamento? = lancamentoService?.buscarPorId(id)
+    fun testBuscarLancamentoPorFuncionarioId() {
+        val lancamento: Page<Lancamento>? = lancamentoService?.buscarPorFuncionarioId(id, PageRequest.of(0, 10))
         Assert.assertNotNull(lancamento)
     }
+
+//    @Test
+//    fun testBuscarLancamentoPorId() {
+//        val lancamento: Lancamento? = lancamentoService?.buscarPorId(id)
+//        Assert.assertNotNull(lancamento)
+//    }
 
     @Test
     fun testPersistirLancamento() {

@@ -35,13 +35,13 @@ class EmpresaServiceTest {
     @Test
     fun testBuscarEmpresaPorCnpj() {
         val empresa: Empresa? = empresaService?.buscarPorCnpj(CNPJ)
-        Assertions.assertNotNull(empresa)
+        Assert.assertNotNull(empresa)
     }
 
     @Test
     fun testPersistirEmpresa() {
         val empresa: Empresa? = empresaService?.persistir(empresa())
-        Assertions.assertNotNull(empresa)
+        Assert.assertNotNull(empresa)
     }
 
     private fun empresa(): Empresa = Empresa("Razão Social", CNPJ, "1")

@@ -30,7 +30,7 @@ class FuncionarioServiceTest {
     private val cpf: String = "34234855948"
     private val id: String = "1"
 
-    @Before
+    @BeforeEach
     @Throws(Exception::class)
     fun setUp() {
         BDDMockito.given(funcionarioRepository?.save(Mockito.any(Funcionario::class.java)))

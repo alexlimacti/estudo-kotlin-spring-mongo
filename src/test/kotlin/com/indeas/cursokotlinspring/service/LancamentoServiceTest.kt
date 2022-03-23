@@ -5,7 +5,7 @@ import com.indeas.cursokotlinspring.enums.Tipo
 import com.indeas.cursokotlinspring.repository.LancamentoRepository
 import org.junit.Assert
 import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import org.mockito.BDDMockito
 import org.mockito.Mockito
@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import org.springframework.test.context.junit4.SpringRunner
 import java.util.*
-import kotlin.collections.ArrayList
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
@@ -34,9 +33,9 @@ class LancamentoServiceTest {
     @Before
     @Throws(Exception::class)
     fun setUp() {
-//        BDDMockito
-//            .given<Page<Lancamento>>(lancamentoRepository?.findByFuncionarioId(id, PageRequest(0, 10)))
-//            .willReturn(PageImpl(ArrayList<Lancamento>()))
+        BDDMockito
+            .given<Page<Lancamento>>(lancamentoRepository?.findByFuncionarioId(id, PageRequest.of(0, 10)))
+            .willReturn(PageImpl(ArrayList<Lancamento>()))
         BDDMockito.given(lancamentoRepository?.findById("1")?.orElse(null)).willReturn(lancamento())
         BDDMockito.given(lancamentoRepository?.save(Mockito.any(Lancamento::class.java)))
             .willReturn(lancamento())

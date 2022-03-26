@@ -23,6 +23,8 @@ class SecurityConfig(val funcionarioDetailsService: FuncionarioDetailsService) :
 
     override fun configure(http: HttpSecurity?) {
         http?.authorizeRequests()?.
+        antMatchers("/api/cadastrar-pj", "/api/cadastrar-pf")?.
+        permitAll()?.
         anyRequest()?.
         authenticated()?.and()?.
         httpBasic()?.and()?.
